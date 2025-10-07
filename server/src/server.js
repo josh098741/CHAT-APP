@@ -1,21 +1,11 @@
 import dotenv from 'dotenv'
 import express from 'express'
+import authRoutes from './routes/auth.route.js'
 
 dotenv.config()
 const app = express()
 
-
-app.get("/api/auth/signup",(req,res) => {
-    res.send("Signup endpoint")
-})
-
-app.get("/api/auth/login",(req,res) => {
-    res.send("Login Endpoint")
-})
-
-app.get("/api/auth/logout",(req,res) => {
-    res.send("Logout Endpoint")
-})
+app.use("/api/auth",authRoutes)
 
 const PORT = process.env.PORT || 5000
 
