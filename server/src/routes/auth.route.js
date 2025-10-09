@@ -4,17 +4,20 @@ import { login } from '../controllers/auth.controller.js';
 import { logout } from '../controllers/auth.controller.js';
 import { updateProfile } from '../controllers/auth.controller.js'
 import { protectRoute } from '../middleware/auth.middleware.js';
+import { arcjetProtection } from '../middleware/arcjet.middleware.js';
 
 const router = express.Router();
 
-router.post("/signup",signup)
+router.use(arcjetProtection)
 
-router.post("/login",login)
+router.post("/signup", signup)
 
-router.post("/logout",logout)
+router.post("/login", login)
 
-router.put("/update-profile", protectRoute ,updateProfile)
+router.post("/logout", logout)
 
-router.get("/check",protectRoute, (req,res) => res.status(400).json(req.user))
+router.put("/update-profile", protectRoute, updateProfile)
+
+router.get("/check", protectRoute, (req,res) => res.status(400).json(req.user))
 
 export default router
