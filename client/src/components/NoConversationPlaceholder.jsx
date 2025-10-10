@@ -3,7 +3,7 @@
 
 function NoConversationPlaceholder(){
     return(
-        <div></div>
+        <div>No Conversations Found</div>
     )
 }
 
