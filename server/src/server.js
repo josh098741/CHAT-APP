@@ -1,7 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-
+import { app,server } from './lib/socket.js'
 import { ENV } from './lib/env.js'
 
 import authRoutes from './routes/auth.route.js'
@@ -9,7 +9,7 @@ import messageRoutes from './routes/message.route.js'
 import path from 'path'
 import { connectDB } from './lib/db.js'
 
-const app = express()
+
 const __dirname = path.resolve()
 
 const PORT = ENV.PORT || 5000
@@ -34,7 +34,7 @@ if(ENV.NODE_ENV === "production"){
 const start = async () => {
     try{
         await connectDB()
-        app.listen(PORT, () => {
+        server.listen(PORT, () => {
             console.log(`Server is running succesfully on PORT : ${PORT}`)
         })
     }catch(error){
