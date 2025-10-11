@@ -20,6 +20,11 @@ io.use(socketAuthMiddleware)
 //this is for storing online users
 const userSocketMap = {}; //{userId:socketId}
 
+//we will use this function to  check whether user is online or not
+export function getReceiverSocketId(userId){
+    return userSocketMap[userId]
+}
+
 io.on("connection", (socket) => {
     console.log("A User Connected",socket.user.fullName)
 
